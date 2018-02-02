@@ -1,7 +1,16 @@
+#deck {
+	position: relative;
+	width:  123.5px;
+	height: 192px;
+}
+
 .card {
 	width:  123.5px;
 	height: 192px;
 	background-size: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .clubs-2 {

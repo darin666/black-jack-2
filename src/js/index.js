@@ -12,7 +12,7 @@ function generateDeck(){
             deck.push({
                 'suit': suits[s],
                 'value': values[v],
-                'reversed': false
+                'reversed': true
             });
         }
     }
