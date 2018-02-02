@@ -1,16 +1,24 @@
 #deck {
 	position: relative;
-	width:  123.5px;
+	width: 123.5px;
 	height: 192px;
+	margin: auto;
+	border: 3px solid lightyellow;
+}
+
+.hand {
+	height: 192px;
+	position: absolute;
+	left: 100px;
+	top: 350px;
+	display: flex;
+	border: 3px solid lightyellow;
 }
 
 .card {
-	width:  123.5px;
+	width: 123.5px;
 	height: 192px;
 	background-size: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
 }
 
 .clubs-2 {
