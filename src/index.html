@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Blackjack</title>
-		<link rel="stylesheet" href="/css/index.css">
-	</head>
-	<body>
-		<script src="/js/jquery-3.3.1.min.js"></script>
-		<script src="/js/index.js"></script>
-		<button type="button" id="btn">Start</button>
-		<div id="deck"></div>
-		<div class="hand"></div>
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Blackjack</title>
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/index.js"></script>
+	<button type="button" id="btn">HIT!</button>
+
+	<div id="deck"></div>
+	<h1>The Gambler</h1>
+	<div class="hand"></div>
 
 	<script>
-			var deck = generateDeck();
-			var hand = [];
-			deck = shuffleDeck(deck);
+		var deck = generateDeck();
+		var hand = [];
 
+		deck = shuffleDeck(deck);
+
+		renderDeck();
+
+		$('#btn').click(function () {
+			var a = deck.pop();
+			a.reverse = false;
+			hand.push(a);
+			console.log('asdf');
 			renderDeck();
+			renderHand();
+		})
+	</script>
 
-			$('#btn').click(function () {
-				var a = deck.pop();
-				a.reverse = false;
-				hand.push(a);
-				console.log('asdf');
-				renderDeck();
-				renderHand();
-			})
-
-		</script>
-
-	<script>
+	<!-- <script>
 		$(document.body).append(
 			$('<h1>Testing JQuery</h1>')
 		);
-		</script>
+		</script> -->
 
 
 
 </body>
+
 </html>
