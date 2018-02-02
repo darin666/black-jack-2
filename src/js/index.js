@@ -1,19 +1,37 @@
 'use strict'; // Whole-script strict mode syntax
 
+function Card(value, suit) {
+    this.value = value,
+    this.suit = suit,
+    this.reverse = true;
+
+
+    this.info = function() {
+        return this.value + this.suit
+    }
+
+    this.createHTML = function() {
+        if(this.reverse){
+            return $('<div>').addClass('card').addClass('revers');
+        }else{
+            return $('<div>').addClass('card').addClass(this.value+ '-' +this.suit);
+        }
+    }
+
+
+}
 
 function generateDeck(){
     var deck = [];
 
     var suits = ['clubs', 'diamonds', 'hearts', 'spades'];
     var values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
+
     for(var s = 0; s < suits.length; s++){
         for(var v = 0; v < values.length; v++){
+            var card = new Card(suits[s],values[v]);
+            deck.push(card);
 
-            deck.push({
-                'suit': suits[s],
-                'value': values[v],
-                'reversed': true
-            });
         }
     }
 
@@ -39,3 +57,17 @@ function shuffleDeck(deck) {
 
     return deck;
 }
+
+function renderDeck(){
+    $('#deck').empty();
+    var card = deck[deck.length - 1];
+    $('#deck').append(card.createHTML());
+}
+
+function renderHand() {
+    $('.hand').empty();
+    var card = hand[hand.length - 1];
+    $('.hand').append(card.createHTML());
+}
+
+
