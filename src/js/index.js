@@ -1,35 +1,35 @@
 'use strict'; // Whole-script strict mode syntax
 
-function Card(value, suit) {
+function Card(suit, value) {
     this.value = value,
-    this.suit = suit,
-    this.reverse = true;
+        this.suit = suit,
+        this.reverse = true;
 
 
-    this.info = function() {
+    this.info = function () {
         return this.value + this.suit
     }
 
-    this.createHTML = function() {
-        if(this.reverse){
+    this.createHTML = function () {
+        if (this.reverse) {
             return $('<div>').addClass('card').addClass('revers');
-        }else{
-            return $('<div>').addClass('card').addClass(this.value+ '-' +this.suit);
+        } else {
+            return $('<div>').addClass('card').addClass(this.suit + '-' + this.value);
         }
     }
 
 
 }
 
-function generateDeck(){
+function generateDeck() {
     var deck = [];
 
     var suits = ['clubs', 'diamonds', 'hearts', 'spades'];
     var values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
 
-    for(var s = 0; s < suits.length; s++){
-        for(var v = 0; v < values.length; v++){
-            var card = new Card(suits[s],values[v]);
+    for (var s = 0; s < suits.length; s++) {
+        for (var v = 0; v < values.length; v++) {
+            var card = new Card(suits[s], values[v]);
             deck.push(card);
 
         }
@@ -58,16 +58,31 @@ function shuffleDeck(deck) {
     return deck;
 }
 
-function renderDeck(){
+function renderDeck() {
     $('#deck').empty();
     var card = deck[deck.length - 1];
     $('#deck').append(card.createHTML());
 }
 
 function renderHand() {
+    var sum = 0;
     $('.hand').empty();
-    var card = hand[hand.length - 1];
-    $('.hand').append(card.createHTML());
+    hand.forEach(function (card) {
+        console.log(card.value)
+        if (card.value == 'king' || card.value == 'queen' || card.value == 'jack') {
+            sum = sum + 10
+        } else if (card.value == 'ace') {
+            sum = sum + 11
+        } else {
+            sum = sum + parseInt(card.value);
+        }
+
+        $('.hand').append(card.createHTML());
+    });
+
+    if (sum > 21) {
+        alert('YOU DIED, YOU SHOULD HAVE NOT COME TO LAS VEGAS');
+    }
 }
 
-
+// $( "body" ).append(<div id = 'alert'></div> );
